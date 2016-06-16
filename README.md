@@ -1,1 +1,1 @@
-Collection of OH-MY-ZSH custom libs and themes.
+Collection of OH-MY-ZSH custom scripts and themes.
