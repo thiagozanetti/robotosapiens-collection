@@ -36,11 +36,12 @@ local rvm_info='$(rvm_prompt_info)'
 local git_info='$(git_prompt_info)'
 local nvm_info='$(nvm_prompt_info)'
 local vnv_info='$(virtualenv_prompt_info)'
+local php_info='$(php_env_prompt_info)'
 	
 local time_now="%B$FG[046]⏰ %*%f%b"
 
 PROMPT="┏━${user_and_dir}
-┣${git_info}${vnv_info}${nvm_info}${rvm_info}
+┣${git_info}${vnv_info}${nvm_info}${php_info}${rvm_info}
 ┗━$PR_PROMPT "
 RPROMPT="${time_now} ${return_code}"
 
@@ -59,4 +60,16 @@ ZSH_THEME_NVM_PROMPT_SUFFIX="%f"
 
 ZSH_THEME_VIRTUALENV_PROMPT_PREFIX="━$FG[082]["
 ZSH_THEME_VIRTUALENV_PROMPT_SUFFIX="]%f"
+
+ZSH_THEME_ENV_PHP_PROMPT_PREFIX="━$FG[085]["
+ZSH_THEME_ENV_PHP_PROMPT_SUFFIX="]%f"
+
+ZSH_THEME_PHP_PROMPT_PREFIX="php:"
+ZSH_THEME_PHP_PROMPT_SUFFIX=
+
+ZSH_THEME_LARAVEL_PROMPT_PREFIX="|laravel:"
+ZSH_THEME_LARAVEL_PROMPT_SUFFIX=
+
+ZSH_THEME_COMPOSER_PROMPT_PREFIX="|composer:"
+ZSH_THEME_COMPOSER_PROMPT_SUFFIX=
 }
