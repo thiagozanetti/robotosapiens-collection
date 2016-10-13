@@ -37,7 +37,7 @@ local git_info='$(git_prompt_info)'
 local nvm_info='$(nvm_prompt_info)'
 local vnv_info='$(virtualenv_prompt_info)'
 local php_info='$(php_env_prompt_info)'
-	
+
 local time_now="%B$FG[046]⏰ %*%f%b"
 
 PROMPT="┏━${user_and_dir}
@@ -52,7 +52,7 @@ ZSH_THEME_GIT_REF_PREFIX="|ref:"
 ZSH_THEME_GIT_PROMPT_SHA_BEFORE="|rev:"
 ZSH_THEME_GIT_PROMPT_DIRTY="|*"
 
-ZSH_THEME_RVM_PROMPT_PREFIX="━$FG[135][rb:"
+ZSH_THEME_RVM_PROMPT_PREFIX="━$FG[135]["
 ZSH_THEME_RVM_PROMPT_SUFFIX="]%f"
 
 ZSH_THEME_NVM_PROMPT_PREFIX="━$FG[227]"
