@@ -1,4 +1,6 @@
 function nvm_prompt_info {
+  setopt +o nomatch
+
   [ -f "$HOME/.nvm/nvm.sh" ] || return
   local nvm_prompt nvm_v node_v npm_v bower_v gulp_v typings_v ts_v
 
@@ -44,7 +46,7 @@ function nvm_prompt_info {
     fi
   fi
 
-  nvm_prompt="[${nvm_prompt}]"
+  nvm_prompt="${nvm_prompt}"
 
   echo "${ZSH_THEME_NVM_PROMPT_PREFIX}${nvm_prompt}${ZSH_THEME_NVM_PROMPT_SUFFIX}"
 }
