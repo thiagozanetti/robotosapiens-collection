@@ -7,13 +7,18 @@ function nvm_prompt_info {
   nvm_v=$(nvm --version 2>/dev/null)
   node_v=$(node -v 2>/dev/null)
   npm_v=$(npm -v 2>/dev/null)
+  yarn_v=$(yarn -v 2>/dev/null)
 
-  if [[ "${nvm_v}x" == "x" || "${node_v}x" == "x" || "${nvm_v}x" == "x" ]] ; then
+  if [[ "${nvm_v}x" == "x" || "${node_v}x" == "x" || "${npm_v}x" == "x" ]] ; then
     echo ""
     return
   fi
 
   nvm_prompt="nvm:${nvm_v}|node:${node_v:1}|npm:${npm_v}"
+
+  if [[ "${yarn_v}x" != "x"  ]] ;  then
+    nvm_prompt="${nvm_prompt}|yarn:${yarn_v}"
+  fi
 
   if [[ -d "bower_components" ]] ; then
     bower_v=$(bower -v 2>/dev/null)
