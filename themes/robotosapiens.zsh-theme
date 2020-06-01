@@ -37,13 +37,24 @@ local git_info='$(git_prompt_info)'
 local nvm_info='$(nvm_prompt_info)'
 local vnv_info='$(virtualenv_prompt_info)'
 local php_info='$(php_env_prompt_info)'
+local k8s_info='$(k8s_prompt_info)'
 
 local time_now="%B$FG[046]⏰ %*%f%b"
 
 PROMPT="╭${user_and_dir}
-├${git_info}${vnv_info}${nvm_info}${php_info}${rvm_info}
+├${git_info}${vnv_info}${nvm_info}${php_info}${rvm_info}${k8s_info}
 ╰$PR_PROMPT "
 RPROMPT="${time_now} ${return_code}"
+
+KUBE_PS1_PREFIX="─$FG[032][%f"
+KUBE_PS1_SUFFIX="$FG[032]]%f"
+KUBE_PS1_SEPARATOR="$FG[032]|ctx:%f"
+KUBE_PS1_DIVIDER="$FG[032]|ns:%f"
+KUBE_PS1_SYMBOL_COLOR="32"
+KUBE_PS1_CTX_COLOR="32"
+KUBE_PS1_NS_COLOR="32"
+KUBE_PS1_SYMBOL_USE_IMG=true
+KUBE_PS1_CLUSTER_FUNCTION=get_cluster_short
 
 ZSH_THEME_GIT_PROMPT_PREFIX="$FG[208][git:"
 ZSH_THEME_GIT_PROMPT_SUFFIX="]%f"
