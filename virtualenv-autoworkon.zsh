@@ -37,6 +37,7 @@ function check_for_virtual_env {
 }
 
 function cd {
+  autoenv_init
   builtin cd "$@" && check_for_virtual_env
 }
 
