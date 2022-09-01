@@ -37,7 +37,7 @@ local git_info='$(git_prompt_info)'
 local nvm_info='$(nvm_prompt_info)'
 local vnv_info='$(virtualenv_prompt_info)'
 local php_info='$(php_env_prompt_info)'
-local k8s_info='$(k8s_prompt_info)'
+# local k8s_info='$(k8s_prompt_info)'
 
 local time_now="%B$FG[046]⏰ %*%f%b"
 
