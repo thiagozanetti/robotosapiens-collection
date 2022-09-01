@@ -17,6 +17,14 @@ function nvm_prompt_info {
 
     nvm_prompt="nvm:${nvm_v}|node:${node_v:1}|npm:${npm_v}"
 
+    if [[ -f "bun.lockb" ]] ; then
+      bun_v=$(bun -v 2>/dev/null)
+
+      if [[ "${bun_v}x" != "x" ]] ; then
+        nvm_prompt="${nvm_prompt}|bun:${bun_v}"
+      fi
+    fi
+
     if [[ "${yarn_v}x" != "x"  ]] ;  then
       nvm_prompt="${nvm_prompt}|yarn:${yarn_v}"
     fi
