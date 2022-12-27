@@ -54,9 +54,14 @@ function nvm_prompt_info {
     fi
 
     if [[ -f "tsconfig.json" ]] ; then
-      ts_v=$(tsc -v 2>/dev/null)
+      ts_v=$(npx --no tsc -- -v 2>/dev/null)
       if [[ "${ts_v}x" != "x" ]] ; then
         nvm_prompt="${nvm_prompt}|tsc:${ts_v[(ws: :)2]}"
+      else
+        ts_v=$(tsc -v 2>/dev/null)
+        if [[ "${ts_v}x" != "x" ]] ; then
+          nvm_prompt="${nvm_prompt}|tsc:${ts_v[(ws: :)2]}"
+        fi
       fi
     fi
 
