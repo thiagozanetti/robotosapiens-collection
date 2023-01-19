@@ -1,7 +1,25 @@
 function js_prompt_info {
-  if [[ -f "package.json" ]]; then
-    setopt +o nomatch
+  setopt +o nomatch
 
+  set -- deno.json*
+  if [[ -f "$1" ]]; then
+    deno_v=$(deno --version 2>/dev/null)
+
+    if [[ "${deno_v}x" == "x" ]]; then
+      echo ""
+      return
+    fi
+
+    js_prompt="deno:${${deno_v#* }%% *}"
+
+    dvm_v=$(dvm --version 2>/dev/null)
+
+    if [[ "${dvm_v}x" != "x" ]]; then
+      js_prompt="dvm:${dvm_v#* }|${js_prompt}"
+    fi
+  fi
+
+  if [[ -f "package.json" ]]; then
     node_v=$(node -v 2>/dev/null)
     npm_v=$(npm -v 2>/dev/null)
 
@@ -10,14 +28,20 @@ function js_prompt_info {
       return
     fi
 
-    js_prompt="node:${node_v:1}|npm:${npm_v}"
+    node_prompt="node:${node_v:1}|npm:${npm_v}"
 
     if [[ -f "$HOME/.nvm/nvm.sh" ]]; then
       nvm_v=$(nvm --version 2>/dev/null)
 
       if [[ "${nvm_v}x" != "x" ]]; then
-        js_prompt="nvm:${nvm_v}|${js_prompt}"
+        node_prompt="nvm:${nvm_v}|${node_prompt}"
       fi
+    fi
+
+    if [[ "${js_prompt}x" != "x" ]]; then
+      js_prompt="${js_prompt}|${node_prompt}"
+    else
+      js_prompt="${node_prompt}"
     fi
 
     if [[ -f "bun.lockb" ]]; then
@@ -71,9 +95,14 @@ function js_prompt_info {
         fi
       fi
     fi
-
-    js_prompt="${js_prompt}"
-
-    echo "${ZSH_THEME_JS_PROMPT_PREFIX}${js_prompt}${ZSH_THEME_JS_PROMPT_SUFFIX}"
   fi
+
+  js_prompt="${js_prompt}"
+
+  if [[ "${js_prompt}x" == "x" ]];  then
+    echo ""
+    return
+  fi
+
+  echo "${ZSH_THEME_JS_PROMPT_PREFIX}${js_prompt}${ZSH_THEME_JS_PROMPT_SUFFIX}"
 }
