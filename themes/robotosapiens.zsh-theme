@@ -39,12 +39,19 @@ local vnv_info='$(virtualenv_prompt_info)'
 local php_info='$(php_env_prompt_info)'
 # local k8s_info='$(k8s_prompt_info)'
 
+local zsh=`zsh --version`
+local parts_zsh=(${(@s: :)zsh})
+local omz=`omz version`
+local parts_omz=(${(@s: :)omz})
+
+local zsh_info="%B$FG[055][zsh:${parts_zsh[2]}|omz:${${parts_omz[2]%*\)}#*\(}]%f%b"
+
 local time_now="%B$FG[046]⏰ %*%f%b"
 
 PROMPT="╭${user_and_dir}
 ├${git_info}${vnv_info}${js_info}${php_info}${rvm_info}${k8s_info}
 ╰$PR_PROMPT "
-RPROMPT="${time_now} ${return_code}"
+RPROMPT="${zsh_info} ${time_now} ${return_code}"
 
 KUBE_PS1_PREFIX="─$FG[032][%f"
 KUBE_PS1_SUFFIX="$FG[032]]%f"
