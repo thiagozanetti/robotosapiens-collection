@@ -35,6 +35,7 @@ local user_and_dir="${user_host}${current_dir}"
 local rvm_info='$(rvm_prompt_info)'
 local git_info='$(git_prompt_info)'
 local js_info='$(js_prompt_info)'
+local zig_info='$(zig_prompt_info)'
 local vnv_info='$(virtualenv_prompt_info)'
 local php_info='$(php_env_prompt_info)'
 # local k8s_info='$(k8s_prompt_info)'
@@ -49,7 +50,7 @@ local zsh_info="%B$FG[055][zsh:${parts_zsh[2]}|omz:${${parts_omz[2]%*\)}#*\(}]%f
 local time_now="%B$FG[046]⏰ %*%f%b"
 
 PROMPT="╭${user_and_dir}
-├${git_info}${vnv_info}${js_info}${php_info}${rvm_info}${k8s_info}
+├${git_info}${zig_info}${vnv_info}${js_info}${php_info}${rvm_info}${k8s_info}
 ╰$PR_PROMPT "
 RPROMPT="${zsh_info} ${time_now} ${return_code}"
 
@@ -75,6 +76,9 @@ ZSH_THEME_RVM_PROMPT_SUFFIX="]%f"
 
 ZSH_THEME_JS_PROMPT_PREFIX="─$FG[227]["
 ZSH_THEME_JS_PROMPT_SUFFIX="]%f"
+
+ZSH_THEME_ZIG_PROMPT_PREFIX="─$FG[085]["
+ZSH_THEME_ZIG_PROMPT_SUFFIX="]%f"
 
 ZSH_THEME_VIRTUALENV_PROMPT_PREFIX="─$FG[082]["
 ZSH_THEME_VIRTUALENV_PROMPT_SUFFIX="]%f"
