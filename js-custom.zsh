@@ -19,7 +19,21 @@ function js_prompt_info {
     fi
   fi
 
-  if [[ -f "package.json" ]]; then
+  if [[ -f "bun.lockb" ]]; then
+    bun_v=$(bun -v 2>/dev/null)
+
+    if [[ "${bun_v}x" != "x" ]]; then
+      bun_prompt="bun:${bun_v}"
+    fi
+
+    if [[ "${js_prompt}x" != "x" ]]; then
+      js_prompt="${js_prompt}|${bun_prompt}"
+    else
+      js_prompt="${bun_prompt}"
+    fi
+  fi
+
+  if [[ -f "package.json" && ! -f "bun.lockb" ]]; then
     node_v=$(node -v 2>/dev/null)
     npm_v=$(npm -v 2>/dev/null)
 
@@ -42,14 +56,6 @@ function js_prompt_info {
       js_prompt="${js_prompt}|${node_prompt}"
     else
       js_prompt="${node_prompt}"
-    fi
-
-    if [[ -f "bun.lockb" ]]; then
-      bun_v=$(bun -v 2>/dev/null)
-
-      if [[ "${bun_v}x" != "x" ]]; then
-        js_prompt="${js_prompt}|bun:${bun_v}"
-      fi
     fi
 
     if [[ -f "yarn.lock" ]]; then
